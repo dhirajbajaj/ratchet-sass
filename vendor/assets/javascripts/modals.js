@@ -34,6 +34,11 @@
     if (modal) {
       if (modal && modal.classList.contains('modal')) {
         modal.classList.toggle('active');
+        if (modal.classList.contains('active')) {
+          window.charts.forEach(function(chart){
+            chart.stop().render();
+          });
+        };
       }
       event.preventDefault(); // prevents rewriting url (apps can still use hash values in url)
     }
