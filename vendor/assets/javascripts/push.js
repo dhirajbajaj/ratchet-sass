@@ -32,7 +32,8 @@
     bartab             : '.bar-tab',
     barnav             : '.bar-nav',
     barfooter          : '.bar-footer',
-    barheadersecondary : '.bar-header-secondary'
+    barheadersecondary : '.bar-header-secondary',
+    reports            : '#reports'
   };
 
   var cacheReplace = function (data, updates) {
