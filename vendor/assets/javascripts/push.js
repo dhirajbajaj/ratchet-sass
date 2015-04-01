@@ -33,7 +33,8 @@
     barnav             : '.bar-nav',
     barfooter          : '.bar-footer',
     barheadersecondary : '.bar-header-secondary',
-    reports            : '#reports'
+    reports            : '#reports',
+    popover            : '#popover-wrapper'
   };
 
   var cacheReplace = function (data, updates) {
