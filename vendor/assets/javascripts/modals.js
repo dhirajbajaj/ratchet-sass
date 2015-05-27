@@ -2,13 +2,21 @@
  * Ratchet: modals.js v2.0.2
  * http://goratchet.com/components#modals
  * ========================================================================
- * Copyright 2014 Connor Sears
+ * Copyright 2015 Connor Sears
  * Licensed under MIT (https://github.com/twbs/ratchet/blob/master/LICENSE)
  * ======================================================================== */
 
 !(function () {
   'use strict';
 
+  var eventModalOpen = new CustomEvent('modalOpen', {
+    bubbles: true,
+    cancelable: true
+  });
+  var eventModalClose = new CustomEvent('modalClose', {
+    bubbles: true,
+    cancelable: true
+  });
   var findModals = function (target) {
     var i;
     var modals = document.querySelectorAll('a');
@@ -31,16 +39,14 @@
 
   window.addEventListener('touchend', function (event) {
     var modal = getModal(event);
-    if (modal) {
-      if (modal && modal.classList.contains('modal')) {
-        modal.classList.toggle('active');
-        if (modal.classList.contains('active')) {
-          window.charts.forEach(function(chart){
-            chart.stop().render();
-          });
-        };
+    if (modal && modal.classList.contains('modal')) {
+      var eventToDispatch = eventModalOpen;
+      if (modal.classList.contains('active')) {
+        eventToDispatch = eventModalClose;
       }
-      event.preventDefault(); // prevents rewriting url (apps can still use hash values in url)
+      modal.dispatchEvent(eventToDispatch);
+      modal.classList.toggle('active');
     }
+    event.preventDefault(); // prevents rewriting url (apps can still use hash values in url)
   });
 }());
