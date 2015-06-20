@@ -36,6 +36,7 @@
   };
 
   var cacheReplace = function (data, updates) {
+    $(document).trigger('page:change');
     PUSH.id = data.id;
     if (updates) {
       data = getCached(data.id);
@@ -46,6 +47,7 @@
   };
 
   var cachePush = function () {
+    $(document).trigger('page:replace');
     var id = PUSH.id;
 
     var cacheForwardStack = JSON.parse(cacheMapping.cacheForwardStack || '[]');
@@ -115,7 +117,7 @@
     }
 
     e.preventDefault();
-
+    $(document).trigger('page:fetch');
     PUSH({
       url        : target.href,
       hash       : target.hash,
